@@ -32,13 +32,17 @@ type Message struct {
 
 // avroConsumer is a basic consumer to interact with schema registry, avro and kafka
 func NewAvroConsumer(kafkaServers []string, schemaRegistryServers []string,
-	topic string, groupId string, callbacks ConsumerCallbacks) (*avroConsumer, error) {
+	topic string, groupId string, callbacks ConsumerCallbacks, fromBeginning bool) (*avroConsumer, error) {
 	// init (custom) config, enable errors and notifications
 	config := cluster.NewConfig()
 	config.Consumer.Return.Errors = true
 	config.Group.Return.Notifications = true
 	//read from beginning at the first time
-	config.Consumer.Offsets.Initial = sarama.OffsetOldest
+	if fromBeginning == true {
+		config.Consumer.Offsets.Initial = sarama.OffsetOldest
+	} else {
+		config.Consumer.Offsets.Initial = sarama.OffsetNewest
+	}
 	topics := []string{topic}
 	consumer, err := cluster.NewConsumer(kafkaServers, groupId, topics, config)
 	if err != nil {
