@@ -7,6 +7,7 @@ import (
 	"github.com/linkedin/goavro/v2"
 	"os"
 	"os/signal"
+	"time"
 )
 
 type avroConsumer struct {
@@ -37,6 +38,7 @@ func NewAvroConsumer(kafkaServers []string, schemaRegistryServers []string,
 	config := cluster.NewConfig()
 	config.Consumer.Return.Errors = true
 	config.Group.Return.Notifications = true
+	config.Consumer.Offsets.CommitInterval=1*time.Second
 	//read from beginning at the first time
 	//if fromBeginning == true {
 	//	config.Consumer.Offsets.Initial = sarama.OffsetOldest
