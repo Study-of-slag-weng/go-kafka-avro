@@ -7,7 +7,7 @@ A library provides consumer/producer to work with kafka, avro and schema registr
 ## Installation
 
 ```
-$ go get github.com/dangkaka/go-kafka-avro
+$ go get github.com/Study-of-slag-weng/go-kafka-avro
 ```
 
 ### Usage

@@ -1,4 +1,4 @@
-module github.com/dangkaka/go-kafka-avro
+module github.com/Study-of-slag-weng/go-kafka-avro
 
 go 1.12
 
