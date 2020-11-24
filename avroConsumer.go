@@ -41,7 +41,7 @@ func NewAvroConsumer(kafkaServers []string, schemaRegistryServers []string,
 	if fromBeginning == true {
 		config.Consumer.Offsets.Initial = sarama.OffsetOldest
 	} else {
-		config.Consumer.Offsets.Initial = sarama.OffsetNewest
+		//config.Consumer.Offsets.Initial = sarama.OffsetNewest
 	}
 	topics := []string{topic}
 	consumer, err := cluster.NewConsumer(kafkaServers, groupId, topics, config)
