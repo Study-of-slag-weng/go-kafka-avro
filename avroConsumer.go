@@ -39,6 +39,7 @@ func NewAvroConsumer(kafkaServers []string, schemaRegistryServers []string,
 	config.Consumer.Return.Errors = true
 	config.Group.Return.Notifications = true
 	config.Consumer.Offsets.CommitInterval=1*time.Second
+	config.Consumer.Offsets.Initial = sarama.OffsetNewest //初始从最新的offset开始
 	//read from beginning at the first time
 	//if fromBeginning == true {
 	//	config.Consumer.Offsets.Initial = sarama.OffsetOldest
