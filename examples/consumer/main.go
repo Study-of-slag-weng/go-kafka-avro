@@ -23,7 +23,7 @@ func main() {
 		},
 	}
 
-	consumer, err := kafka.NewAvroConsumer(kafkaServers, schemaRegistryServers, topic, "consumer-group", consumerCallbacks, true)
+	consumer, err := kafka.NewAvroConsumer(kafkaServers, schemaRegistryServers, topic, []string{"consumer-group"}, consumerCallbacks, true)
 	if err != nil {
 		fmt.Println(err)
 	}
