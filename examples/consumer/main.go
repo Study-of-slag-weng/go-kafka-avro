@@ -8,7 +8,7 @@ import (
 
 var kafkaServers = []string{"localhost:9092"}
 var schemaRegistryServers = []string{"http://localhost:8081"}
-var topic = "test"
+var topics = []string{"test"}
 
 func main() {
 	consumerCallbacks := kafka.ConsumerCallbacks{
@@ -23,7 +23,7 @@ func main() {
 		},
 	}
 
-	consumer, err := kafka.NewAvroConsumer(kafkaServers, schemaRegistryServers, topic, []string{"consumer-group"}, consumerCallbacks, true)
+	consumer, err := kafka.NewAvroConsumer(kafkaServers, schemaRegistryServers, topics, "consumer-group", consumerCallbacks, true)
 	if err != nil {
 		fmt.Println(err)
 	}
